@@ -1,0 +1,366 @@
+/* ================================================================
+   styles.css
+   Estilo geral do sistema — visual SaaS moderno, responsivo,
+   com suporte a tema claro/escuro via variáveis CSS.
+================================================================= */
+
+:root {
+  --color-primary: #1565c0;
+  --color-primary-dark: #0d47a1;
+  --bg-body: #f4f6f9;
+  --bg-surface: #ffffff;
+  --bg-sidebar: #10233f;
+  --text-main: #1a2333;
+  --text-muted: #6b7688;
+  --border-color: #e5e9f0;
+  --sidebar-width: 250px;
+  --sidebar-width-collapsed: 72px;
+  --topbar-height: 64px;
+}
+
+[data-theme="dark"] {
+  --bg-body: #10141c;
+  --bg-surface: #1a202c;
+  --bg-sidebar: #0b1220;
+  --text-main: #e8ecf3;
+  --text-muted: #9aa4b5;
+  --border-color: #2a3242;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg-body);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ---------------- Layout geral ---------------- */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-content {
+  padding: 20px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  color: #cbd5e6;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  transition: width 0.2s ease;
+  z-index: 1050;
+  flex-shrink: 0;
+}
+.sidebar.collapsed { width: var(--sidebar-width-collapsed); }
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 18px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-brand i { font-size: 1.5rem; color: #4fc3f7; }
+
+.sidebar-nav { padding: 14px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border: none;
+  background: transparent;
+  color: #b6c2d9;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 0.94rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.sidebar-link i { font-size: 1.15rem; width: 22px; text-align: center; }
+.sidebar-link:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.sidebar-link.active { background: var(--color-primary); color: #fff; }
+
+.sidebar-footer { padding: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+.sidebar-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1040;
+}
+
+/* ---------------- Topbar ---------------- */
+.topbar {
+  height: var(--topbar-height);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  gap: 16px;
+}
+
+.topbar-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: var(--text-main); }
+
+.topbar-search {
+  flex: 1;
+  max-width: 380px;
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+}
+.topbar-search input {
+  border: none; background: transparent; outline: none; width: 100%; color: var(--text-main);
+}
+
+.btn-icon {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-icon:hover { background: var(--bg-body); color: var(--text-main); }
+
+.topbar-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--color-primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ---------------- Cards / Superfícies ---------------- */
+.card {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border-color) !important;
+}
+.card-header, .card-footer { background: var(--bg-surface) !important; border-color: var(--border-color) !important; }
+.table { color: var(--text-main); }
+.table > :not(caption) > * > * { background: transparent; color: var(--text-main); border-color: var(--border-color); }
+
+.section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ---------------- Indicadores (Dashboard) ---------------- */
+.stat-card .card-body { padding: 18px; }
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+}
+.stat-value { font-size: 1.4rem; font-weight: 700; line-height: 1.1; }
+.stat-label { font-size: 0.78rem; }
+
+@media (min-width: 1200px) {
+  .col-xl-2-4 { flex: 0 0 auto; width: 20%; }
+}
+
+/* ---------------- Busca / Filtros ---------------- */
+.search-box {
+  position: relative;
+  min-width: 240px;
+}
+.search-box i {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted);
+}
+.search-box input { padding-left: 34px; }
+
+.filters-bar select, .filters-bar input {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+/* ---------------- Autocomplete ---------------- */
+.autocomplete-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  max-height: 260px;
+  overflow-y: auto;
+  z-index: 30;
+}
+.autocomplete-item {
+  display: block; width: 100%; text-align: left; padding: 10px 14px;
+  border: none; background: transparent; color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+}
+.autocomplete-item:hover { background: var(--bg-body); }
+.autocomplete-item:last-child { border-bottom: none; }
+
+/* ---------------- Upload de arquivos ---------------- */
+.file-preview-thumb {
+  width: 72px; height: 72px; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;
+  background: var(--bg-body);
+}
+.file-preview-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------------- Modal customizado (confirmação) ---------------- */
+.modal-backdrop-custom {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center; z-index: 3000; padding: 16px;
+}
+.modal-card {
+  background: var(--bg-surface); color: var(--text-main);
+  border-radius: 14px; width: 100%; max-width: 440px; overflow: hidden;
+}
+.modal-card-header { padding: 18px 20px; border-bottom: 1px solid var(--border-color); }
+.modal-card-body { padding: 20px; }
+.modal-card-footer { padding: 14px 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 8px; }
+
+/* ---------------- Loading ---------------- */
+.loading-overlay {
+  position: fixed; inset: 0; background: rgba(255,255,255,0.75);
+  display: flex; align-items: center; justify-content: center; z-index: 4000;
+}
+[data-theme="dark"] .loading-overlay { background: rgba(16,20,28,0.8); }
+
+/* ---------------- Animações leves ---------------- */
+.fade-in { animation: fadeIn 0.25s ease; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- Responsividade ---------------- */
+@media (max-width: 991.98px) {
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0;
+    transform: translateX(0);
+  }
+  .sidebar.collapsed { width: 0; overflow: hidden; }
+  .app-content { padding: 14px; }
+}
+
+@media (max-width: 575.98px) {
+  .topbar-title { font-size: 0.95rem; }
+  .stat-value { font-size: 1.15rem; }
+}
+
+/* ---------------- Login ---------------- */
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  padding: 16px;
+}
+.login-card {
+  background: var(--bg-surface);
+  border-radius: 16px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 380px;
+}
+
+/* ---------------- Menu do usuário (topbar) ---------------- */
+.topbar-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--color-primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border: none; font-weight: 600; font-size: 0.85rem;
+  cursor: pointer;
+}
+.user-menu {
+  position: absolute; right: 0; top: calc(100% + 8px);
+  background: var(--bg-surface); border: 1px solid var(--border-color);
+  border-radius: 10px; min-width: 220px; z-index: 40; overflow: hidden;
+}
+.user-menu-header { padding: 12px 14px; border-bottom: 1px solid var(--border-color); }
+.user-menu-item {
+  display: block; width: 100%; text-align: left; padding: 10px 14px;
+  border: none; background: transparent; color: var(--text-main);
+}
+.user-menu-item:hover { background: var(--bg-body); }
+
+/* ---------------- Checklist de segurança (Fiscalização) ---------------- */
+.checklist-item {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-body);
+}
+.checklist-group-title {
+  font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
+  color: var(--color-primary); margin: 18px 0 10px;
+}
+
+/* ---------------- Upload de fotos com legenda ---------------- */
+.btn-remove-thumb {
+  position: absolute; top: -6px; right: -6px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #d32f2f; color: #fff; border: none;
+  font-size: 0.8rem; line-height: 1; display: flex;
+  align-items: center; justify-content: center;
+}
+.photo-caption-card { position: relative; }
+.photo-caption-card img {
+  width: 100%; height: 90px; object-fit: cover; border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+/* ---------------- Timeline de histórico ---------------- */
+.timeline-item {
+  border-left: 3px solid var(--color-primary);
+  padding: 4px 0 4px 16px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -7px; top: 6px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--color-primary);
+}
+.timeline-item.readonly-note {
+  opacity: 0.95;
+}
