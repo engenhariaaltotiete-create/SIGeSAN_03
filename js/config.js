@@ -8,7 +8,7 @@
 window.APP_CONFIG = {
   API_URL: 'https://script.google.com/macros/s/AKfycbwlYtFhSugktzFRrUKly4IjwECN4szZMUgHAqh1-iQwLHuiS1tCCA3eTsxTNb6AKkf9/exec',
   APP_NAME: 'SIGeSAN - Sistema de Gestão de Obras de Saneamento',
-  ITEMS_PER_PAGE: 10,
+  ITEMS_PER_PAGE: 500,
   SESSION_STORAGE_KEY: 'sigesan-session',
   POLL_INTERVAL: 300000 // 5 minutos — atualização em segundo plano
 };
